@@ -1,0 +1,11 @@
+node_modules
+dist
+.DS_Store
+.env*
+.cursor
+.sst
+.astro
+.npmrc
+.idea
+.claude
+.vscode
