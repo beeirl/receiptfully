@@ -42,7 +42,6 @@ export async function captureElement(
     filename,
     scale: options?.scale ?? 2,
     embedFonts: true,
-    useProxy: 'https://proxy.corsfix.com/?',
   })
 
   reactRootElement.unmount()

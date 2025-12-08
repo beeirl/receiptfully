@@ -6,6 +6,7 @@ export const web = new sst.cloudflare.x.SolidStart('Web', {
   link: [...allSecrets],
   environment: {
     VITE_PUBLIC_POSTHOG_KEY: secret.POSTHOG_KEY.value,
+    VITE_PUBLIC_STAGE: $app.stage,
   },
   domain,
   transform: {

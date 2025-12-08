@@ -23,7 +23,7 @@ export function ReceiptGenerator({ schema, onChange, defaultSchema }: ReceiptGen
   }
 
   return (
-    <div className="mx-auto min-h-screen max-w-5xl px-8 py-4 md:px-12 lg:px-16">
+    <div className="mx-auto max-w-5xl px-8 py-4 md:px-12 lg:px-16">
       <form
         onSubmit={(e) => {
           e.preventDefault()

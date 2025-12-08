@@ -14,13 +14,13 @@ export const Route = createRootRoute({
       { title: 'Receiptfully' },
       {
         name: 'description',
-        content: 'Create custom fake receipts for your content. Free to use, no email required.',
+        content: 'Create custom receipts for your business. Free to use, no email required.',
       },
     ],
     links: [
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: '' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Courier+Prime&display=swap',
@@ -37,7 +37,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body className="font-medium antialiased" data-accent-color="orange" data-gray-color="zinc">
+      <body className="font-medium antialiased" data-accent-color="blue" data-gray-color="zinc">
         <PostHogProvider>
           <Outlet />
           <SnackbarManager />

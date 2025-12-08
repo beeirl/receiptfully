@@ -1,5 +1,6 @@
 import { Receipt } from '@/components/receipt'
 import { SupportDialog } from '@/components/support-dialog'
+import { logEvent } from '@/util/analytics'
 import { captureElement } from '@/util/capture'
 import { Button, ButtonLoader } from '@beeirl/ui/button'
 import { DownloadIcon, LightbulbIcon } from '@beeirl/ui/line-icons'
@@ -17,6 +18,7 @@ export function Preview({ schema }: PreviewProps) {
     setLoading(true)
     try {
       await captureElement(<Receipt schema={schema} />, `receiptfully-receipt-${Date.now()}`, { scale: 2 })
+      logEvent('receipt_downloaded')
     } catch (error) {
       console.error('Failed to download receipt:', error)
     }

@@ -2,7 +2,17 @@ import { PostHogProvider as Provider } from 'posthog-js/react'
 import * as React from 'react'
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-  if (import.meta.env.PUBLIC_STAGE !== 'production') {
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return children
+  }
+
+  if (import.meta.env.VITE_PUBLIC_STAGE !== 'production') {
     return children
   }
 

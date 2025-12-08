@@ -226,7 +226,7 @@ function SupportDialogPopup({
           You can also email us at{' '}
           <a
             className="text-gray-900"
-            href={`mailto:hello@receiptfully.com?subject=${
+            href={`mailto:mail@receiptfully.com?subject=${
               {
                 problem: 'Problem',
                 question: 'Question',
@@ -234,7 +234,7 @@ function SupportDialogPopup({
               }[formStore.category]
             }`}
           >
-            hello@receiptfully.com
+            mail@receiptfully.com
           </a>
           .
         </span>

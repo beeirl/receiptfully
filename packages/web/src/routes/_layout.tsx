@@ -7,7 +7,7 @@ export const Route = createFileRoute('/_layout')({
 
 function LayoutComponent() {
   return (
-    <div className="isolate min-h-screen">
+    <div className="isolate">
       <Header />
       <Outlet />
     </div>
