@@ -1,4 +1,6 @@
 import ReceiptfullyLogo from '@/assets/receiptfully-logo.svg?react'
+import { SupportDialog } from '@/components/support-dialog'
+import { Button } from '@beeirl/ui/button'
 import { cn } from '@beeirl/ui/styles'
 import React from 'react'
 
@@ -30,6 +32,16 @@ export function Header() {
           <ReceiptfullyLogo className="size-5" />
           <span className="font-semibold text-gray-900">Receiptfully</span>
         </a>
+        <SupportDialog.Root>
+          <SupportDialog.Trigger
+            render={
+              <Button className="rounded-full" color="gray" highContrast size="md" variant="ghost">
+                Support
+              </Button>
+            }
+          />
+          <SupportDialog.Popup location="header" />
+        </SupportDialog.Root>
       </nav>
     </div>
   )

@@ -6,6 +6,14 @@
 import "sst"
 declare module "sst" {
   export interface Resource {
+    "DISCORD_FEEDBACK_BOT_TOKEN": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
+    "POSTHOG_KEY": {
+      "type": "sst.sst.Secret"
+      "value": string
+    }
     "Web": {
       "type": "sst.cloudflare.SolidStart"
       "url": string

@@ -7,7 +7,7 @@
       "packages/*"
     ],
     "catalog": {
-      "@beeirl/ui": "0.51.44",
+      "@beeirl/ui": "0.51.45",
       "@cloudflare/workers-types": "4.20250522.0",
       "@tailwindcss/vite": "4.1.17",
       "@tsconfig/node22": "22.0.2",
@@ -20,7 +20,8 @@
       "react-dom": "19.2.0",
       "tailwindcss": "4.1.17",
       "typescript": "5.8.2",
-      "vite": "7.2.2"
+      "vite": "7.2.2",
+      "zod": "4.1.13"
     }
   },
   "scripts": {

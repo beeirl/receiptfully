@@ -1,7 +1,8 @@
 import { Receipt } from '@/components/receipt'
+import { SupportDialog } from '@/components/support-dialog'
 import { captureElement } from '@/util/capture'
 import { Button, ButtonLoader } from '@beeirl/ui/button'
-import { DownloadIcon } from '@beeirl/ui/line-icons'
+import { DownloadIcon, LightbulbIcon } from '@beeirl/ui/line-icons'
 import type { ReceiptSchema } from '@receiptfully/core/receipt'
 import { useState } from 'react'
 
@@ -25,6 +26,17 @@ export function Preview({ schema }: PreviewProps) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 rounded-xl bg-gray-50 pb-4 ring ring-gray-100">
       <div className="flex w-full justify-end space-x-1.5 p-3">
+        <SupportDialog.Root>
+          <SupportDialog.Trigger
+            render={
+              <Button className="rounded-full shadow-xs hover:bg-gray-100" color="gray" size="md" variant="outline">
+                <LightbulbIcon />
+                Feedback
+              </Button>
+            }
+          />
+          <SupportDialog.Popup defaultCategory="feedback" location="preview" />
+        </SupportDialog.Root>
         <Button className="rounded-full" disabled={loading} size="md" onClick={download}>
           <ButtonLoader>
             <DownloadIcon />

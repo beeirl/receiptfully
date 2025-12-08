@@ -6,22 +6,32 @@ import { LineItemsComponent } from '@/components/receipt-generator/components-ta
 import { PaymentComponent } from '@/components/receipt-generator/components-tab/payment-component'
 import { SeparatorComponent } from '@/components/receipt-generator/components-tab/separator-component'
 import { TextComponent } from '@/components/receipt-generator/components-tab/text-component'
-import { BlocksIcon, ClockIcon, FileTextIcon, MessageTextSquareIcon } from '@beeirl/ui/duotone-icons'
 import { IconButton } from '@beeirl/ui/icon-button'
-import { ChevronDownIcon, MenuLeftIcon, TrashIcon } from '@beeirl/ui/line-icons'
+import {
+  BarcodeIcon,
+  CalendarIcon,
+  CartIcon,
+  CashIcon,
+  ChevronDownIcon,
+  DragDropIcon,
+  ImageIcon,
+  MenuLeftIcon,
+  MinusIcon,
+  TrashIcon,
+} from '@beeirl/ui/line-icons'
 import { cn } from '@beeirl/ui/styles'
 import { useSortable } from '@dnd-kit/react/sortable'
 import type { ComponentType, ReceiptComponent } from '@receiptfully/core/receipt'
-import { useState } from 'react'
+import * as React from 'react'
 
 const COMPONENT_ICONS: Record<ComponentType, React.ReactNode> = {
-  image: <BlocksIcon className="size-4" />,
-  text: <MessageTextSquareIcon className="size-4" />,
-  date: <ClockIcon className="size-4" />,
-  separator: <FileTextIcon className="size-4" />,
-  barcode: <FileTextIcon className="size-4" />,
-  payment: <FileTextIcon className="size-4" />,
-  line_items: <FileTextIcon className="size-4" />,
+  image: <ImageIcon className="size-4" />,
+  text: <MenuLeftIcon className="size-4" />,
+  date: <CalendarIcon className="size-4" />,
+  separator: <MinusIcon className="size-4" />,
+  barcode: <BarcodeIcon className="size-4" />,
+  payment: <CashIcon className="size-4" />,
+  line_items: <CartIcon className="size-4" />,
 }
 
 interface ComponentProps {
@@ -32,8 +42,14 @@ interface ComponentProps {
 }
 
 export function Component({ component, index, onUpdate, onRemove }: ComponentProps) {
-  const [expanded, setExpanded] = useState(false)
-  const { ref, handleRef, isDragging } = useSortable({ id: component.id, index })
+  const [expanded, setExpanded] = React.useState(false)
+  const { ref, handleRef, isDragSource } = useSortable({ id: component.id, index })
+
+  React.useLayoutEffect(() => {
+    if (isDragSource) {
+      setExpanded(false)
+    }
+  }, [isDragSource])
 
   const meta = COMPONENT_META[component.type]
   const icon = COMPONENT_ICONS[component.type]
@@ -95,25 +111,27 @@ export function Component({ component, index, onUpdate, onRemove }: ComponentPro
   }
 
   return (
-    <div ref={ref} className="rounded-lg border border-gray-200 bg-white">
-      <div className="flex items-center gap-2 p-3">
+    <div ref={ref} className="rounded-lg-plus border border-gray-200 bg-white">
+      <div className="flex items-center gap-2 px-2.5 py-3">
         <span ref={handleRef} className="cursor-grab text-gray-400 active:cursor-grabbing">
-          <MenuLeftIcon className="size-4" />
+          <DragDropIcon className="size-3.5" />
         </span>
-        <span className="text-gray-500">{icon}</span>
-        <button
-          type="button"
-          onClick={() => setExpanded(!expanded)}
-          className="flex flex-1 items-center gap-1 text-left"
-        >
-          <span className="text-sm font-medium text-gray-900">{meta.label}</span>
-          <ChevronDownIcon className={cn('size-4 text-gray-400 transition-transform', expanded && 'rotate-180')} />
-        </button>
+        <div className="flex items-center gap-2 flex-1">
+          <span className="text-gray-500">{icon}</span>
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="flex flex-1 items-center gap-1 text-left"
+          >
+            <span className="text-sm font-medium text-gray-900">{meta.label}</span>
+            <ChevronDownIcon className={cn('size-4 text-gray-400 transition-transform', expanded && 'rotate-180')} />
+          </button>
+        </div>
         <IconButton size="sm" color="gray" variant="ghost" className="mx-0" onClick={onRemove}>
-          <TrashIcon />
+          <TrashIcon className="text-gray-400 size-3.5!" />
         </IconButton>
       </div>
-      {expanded && !isDragging && <div className="border-t border-gray-100 p-3">{renderFields()}</div>}
+      {expanded && <div className="border-t border-gray-200 p-3">{renderFields()}</div>}
     </div>
   )
 }

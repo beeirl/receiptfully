@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 
+import { PostHogProvider } from '@/components/posthog'
+import { SnackbarManager } from '@/components/snackbar'
+import { ToastManager } from '@/components/toast'
 import styles from '@/styles/index.css?url'
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
 
@@ -35,7 +38,11 @@ function RootComponent() {
         <HeadContent />
       </head>
       <body className="font-medium antialiased" data-accent-color="orange" data-gray-color="zinc">
-        <Outlet />
+        <PostHogProvider>
+          <Outlet />
+          <SnackbarManager />
+          <ToastManager />
+        </PostHogProvider>
         <Scripts />
       </body>
     </html>

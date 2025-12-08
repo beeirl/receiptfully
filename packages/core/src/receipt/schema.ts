@@ -12,6 +12,7 @@ export interface ImageComponent {
     url: string
     size: number // percentage 10-100
     alignment: Alignment
+    grayscale: boolean
   }
 }
 

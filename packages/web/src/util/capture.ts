@@ -7,7 +7,7 @@ export async function captureElement(
   filename: string,
   options?: {
     scale?: number
-  }
+  },
 ) {
   const containerElement = document.createElement('div')
   containerElement.style.position = 'fixed'
@@ -33,8 +33,8 @@ export async function captureElement(
             requestAnimationFrame(() => resolve())
           })
         },
-      })
-    )
+      }),
+    ),
   )
 
   // Use snapdom to download
@@ -42,6 +42,7 @@ export async function captureElement(
     filename,
     scale: options?.scale ?? 2,
     embedFonts: true,
+    useProxy: 'https://proxy.corsfix.com/?',
   })
 
   reactRootElement.unmount()

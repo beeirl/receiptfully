@@ -1,7 +1,16 @@
 import { Component } from '@/components/receipt-generator/components-tab/component'
 import { Button } from '@beeirl/ui/button'
 import { Dialog } from '@beeirl/ui/dialog'
-import { AlignCenterIcon, CartIcon, ImageIcon, MinusIcon, PlusIcon, StatusIcon } from '@beeirl/ui/line-icons'
+import {
+  BarcodeIcon,
+  CalendarIcon,
+  CartIcon,
+  CashIcon,
+  ImageIcon,
+  MenuLeftIcon,
+  MinusIcon,
+  PlusIcon,
+} from '@beeirl/ui/line-icons'
 import { move } from '@dnd-kit/helpers'
 import { DragDropProvider } from '@dnd-kit/react'
 import type { ComponentType, ReceiptComponent, ReceiptSchema } from '@receiptfully/core/receipt'
@@ -42,7 +51,7 @@ export function ComponentsTab({ schema, onChange }: ComponentsTabProps) {
         newComponent = {
           id,
           type: 'image',
-          properties: { url: '', size: 50, alignment: 'center' },
+          properties: { url: '', size: 50, alignment: 'center', grayscale: false },
         }
         break
       case 'text':
@@ -158,7 +167,7 @@ export function ComponentsTab({ schema, onChange }: ComponentsTabProps) {
                 variant="soft"
                 onClick={() => addComponent('text')}
               >
-                <AlignCenterIcon />
+                <MenuLeftIcon />
                 Text
               </Button>
               <Button
@@ -167,7 +176,7 @@ export function ComponentsTab({ schema, onChange }: ComponentsTabProps) {
                 variant="soft"
                 onClick={() => addComponent('date')}
               >
-                <StatusIcon />
+                <CalendarIcon />
                 Date
               </Button>
               <Button
@@ -194,7 +203,7 @@ export function ComponentsTab({ schema, onChange }: ComponentsTabProps) {
                 variant="soft"
                 onClick={() => addComponent('payment')}
               >
-                <CartIcon />
+                <CashIcon />
                 Payment
               </Button>
               <Button
@@ -203,7 +212,7 @@ export function ComponentsTab({ schema, onChange }: ComponentsTabProps) {
                 variant="soft"
                 onClick={() => addComponent('barcode')}
               >
-                <StatusIcon />
+                <BarcodeIcon />
                 Barcode
               </Button>
             </div>

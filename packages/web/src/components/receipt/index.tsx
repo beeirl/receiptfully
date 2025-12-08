@@ -67,9 +67,9 @@ function ImageComponent({ properties }: { properties: ImageComponent['properties
         src={properties.url}
         alt=""
         style={{
-          maxWidth: `${properties.size}%`,
-          maxHeight: 80,
+          width: `${properties.size}%`,
           objectFit: 'contain',
+          filter: properties.grayscale ? 'grayscale(100%)' : undefined,
         }}
       />
     </div>
