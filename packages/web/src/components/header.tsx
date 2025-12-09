@@ -35,7 +35,7 @@ export function Header() {
         <SupportDialog.Root>
           <SupportDialog.Trigger
             render={
-              <Button className="rounded-full" color="gray" highContrast size="md" variant="ghost">
+              <Button className="rounded-full my-0" color="gray" highContrast size="md" variant="ghost">
                 Support
               </Button>
             }

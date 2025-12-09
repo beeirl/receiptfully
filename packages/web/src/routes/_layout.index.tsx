@@ -139,9 +139,12 @@ function Page() {
 
   return (
     <>
-      <h1 className="mx-auto mt-8 mb-4 w-full max-w-xl text-center text-2xl font-bold tracking-tight text-balance text-gray-900 sm:text-3xl md:text-4xl">
-        Receipt Generator
+      <h1 className="mx-auto mt-16 mb-4 w-full max-w-xl text-center text-2xl font-bold tracking-tight text-balance text-gray-900 sm:text-3xl md:text-4xl">
+        Free Receipt Generator (beta)
       </h1>
+      <p className="mx-auto mb-8 mt-1 w-full text-balance max-w-xl text-center text-sm text-gray-500 sm:text-base sm:leading-7">
+        Create custom receipts for your business. Free to use, no email required.
+      </p>
       <ReceiptGenerator schema={schema} onChange={setSchema} defaultSchema={exampleReceipt} />
     </>
   )

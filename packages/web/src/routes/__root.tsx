@@ -11,7 +11,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Receiptfully' },
+      { title: 'Receiptfully - Free Receipt Generator' },
       {
         name: 'description',
         content: 'Create custom receipts for your business. Free to use, no email required.',
