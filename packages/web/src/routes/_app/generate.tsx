@@ -3,8 +3,8 @@ import type { ReceiptSchema } from '@receiptfully/core/receipt'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 
-export const Route = createFileRoute('/_layout/')({
-  component: Page,
+export const Route = createFileRoute('/_app/generate')({
+  component: GenerateRoute,
 })
 
 const exampleReceipt: ReceiptSchema = {
@@ -134,18 +134,20 @@ const exampleReceipt: ReceiptSchema = {
   ],
 }
 
-function Page() {
+function GenerateRoute() {
   const [schema, setSchema] = useState<ReceiptSchema>(exampleReceipt)
 
   return (
     <>
-      <h1 className="mx-auto mt-16 mb-4 w-full max-w-xl text-center text-2xl font-bold tracking-tight text-balance text-gray-900 sm:text-3xl md:text-4xl">
+      <h1 className="mx-auto w-full max-w-xl text-center text-2xl leading-[1.2] font-bold tracking-tight text-balance text-gray-900 sm:text-3xl md:text-4xl">
         Free Receipt Generator (beta)
       </h1>
-      <p className="mx-auto mb-8 mt-1 w-full text-balance max-w-xl text-center text-sm text-gray-500 sm:text-base sm:leading-7">
+      <p className="mx-auto mt-1 max-w-xl text-center text-sm leading-6 text-balance text-gray-800 sm:mt-2 sm:text-base sm:leading-7">
         Create custom receipts for your business. Free to use, no email required.
       </p>
-      <ReceiptGenerator schema={schema} onChange={setSchema} defaultSchema={exampleReceipt} />
+      <div className="mt-14">
+        <ReceiptGenerator schema={schema} onChange={setSchema} defaultSchema={exampleReceipt} />
+      </div>
     </>
   )
 }

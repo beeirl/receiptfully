@@ -7,11 +7,11 @@ import { cn } from '@beeirl/ui/styles'
 import { TextArea } from '@beeirl/ui/text-area'
 import { TextInput } from '@beeirl/ui/text-input'
 import { REST } from '@discordjs/rest'
+import { Resource } from '@receiptfully/resource'
 import { createServerFn } from '@tanstack/react-start'
 import { useStore } from '@tanstack/react-store'
 import { Routes } from 'discord-api-types/v10'
 import React from 'react'
-import { Resource } from 'sst'
 import { snackbarManager } from './snackbar'
 
 const sendFeedback = createServerFn({ method: 'POST' })

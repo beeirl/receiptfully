@@ -10,48 +10,58 @@
 
 import { Route as rootRouteImport } from './../src/routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './../src/routes/sitemap[.]xml'
-import { Route as LayoutRouteImport } from './../src/routes/_layout'
-import { Route as LayoutIndexRouteImport } from './../src/routes/_layout.index'
+import { Route as AppRouteImport } from './../src/routes/_app'
+import { Route as IndexRouteImport } from './../src/routes/index'
+import { Route as AppGenerateRouteImport } from './../src/routes/_app/generate'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutRoute = LayoutRouteImport.update({
-  id: '/_layout',
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutIndexRoute = LayoutIndexRouteImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LayoutRoute,
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppGenerateRoute = AppGenerateRouteImport.update({
+  id: '/generate',
+  path: '/generate',
+  getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/': typeof LayoutIndexRoute
+  '/generate': typeof AppGenerateRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/': typeof LayoutIndexRoute
+  '/generate': typeof AppGenerateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_layout': typeof LayoutRouteWithChildren
+  '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/_layout/': typeof LayoutIndexRoute
+  '/_app/generate': typeof AppGenerateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/sitemap.xml' | '/'
+  fullPaths: '/' | '/sitemap.xml' | '/generate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/sitemap.xml' | '/'
-  id: '__root__' | '/_layout' | '/sitemap.xml' | '/_layout/'
+  to: '/' | '/sitemap.xml' | '/generate'
+  id: '__root__' | '/' | '/_app' | '/sitemap.xml' | '/_app/generate'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  LayoutRoute: typeof LayoutRouteWithChildren
+  IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -64,36 +74,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_layout': {
-      id: '/_layout'
+    '/_app': {
+      id: '/_app'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof LayoutRouteImport
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_layout/': {
-      id: '/_layout/'
+    '/': {
+      id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof LayoutIndexRouteImport
-      parentRoute: typeof LayoutRoute
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app/generate': {
+      id: '/_app/generate'
+      path: '/generate'
+      fullPath: '/generate'
+      preLoaderRoute: typeof AppGenerateRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
-interface LayoutRouteChildren {
-  LayoutIndexRoute: typeof LayoutIndexRoute
+interface AppRouteChildren {
+  AppGenerateRoute: typeof AppGenerateRoute
 }
 
-const LayoutRouteChildren: LayoutRouteChildren = {
-  LayoutIndexRoute: LayoutIndexRoute,
+const AppRouteChildren: AppRouteChildren = {
+  AppGenerateRoute: AppGenerateRoute,
 }
 
-const LayoutRouteWithChildren =
-  LayoutRoute._addFileChildren(LayoutRouteChildren)
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  LayoutRoute: LayoutRouteWithChildren,
+  IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
