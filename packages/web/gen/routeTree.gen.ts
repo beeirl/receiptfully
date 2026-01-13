@@ -11,8 +11,7 @@
 import { Route as rootRouteImport } from './../src/routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './../src/routes/sitemap[.]xml'
 import { Route as AppRouteImport } from './../src/routes/_app'
-import { Route as IndexRouteImport } from './../src/routes/index'
-import { Route as AppGenerateRouteImport } from './../src/routes/_app/generate'
+import { Route as AppIndexRouteImport } from './../src/routes/_app/index'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -23,44 +22,35 @@ const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppGenerateRoute = AppGenerateRouteImport.update({
-  id: '/generate',
-  path: '/generate',
   getParentRoute: () => AppRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/generate': typeof AppGenerateRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/generate': typeof AppGenerateRoute
+  '/': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/_app/generate': typeof AppGenerateRoute
+  '/_app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/generate'
+  fullPaths: '/sitemap.xml' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/generate'
-  id: '__root__' | '/' | '/_app' | '/sitemap.xml' | '/_app/generate'
+  to: '/sitemap.xml' | '/'
+  id: '__root__' | '/_app' | '/sitemap.xml' | '/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -81,35 +71,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_app/': {
+      id: '/_app/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_app/generate': {
-      id: '/_app/generate'
-      path: '/generate'
-      fullPath: '/generate'
-      preLoaderRoute: typeof AppGenerateRouteImport
+      preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
   }
 }
 
 interface AppRouteChildren {
-  AppGenerateRoute: typeof AppGenerateRoute
+  AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppGenerateRoute: AppGenerateRoute,
+  AppIndexRoute: AppIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }

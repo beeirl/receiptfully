@@ -3,7 +3,7 @@ import type { ReceiptSchema } from '@receiptfully/core/receipt'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
 
-export const Route = createFileRoute('/_app/generate')({
+export const Route = createFileRoute('/_app/')({
   component: GenerateRoute,
 })
 

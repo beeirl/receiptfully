@@ -11,6 +11,7 @@ interface SettingsTabProps {
 
 const CURRENCY_OPTIONS = [
   { value: '$', label: '$ (USD)' },
+  { value: 'A$', label: 'A$ (AUD)' },
   { value: '€', label: '€ (EUR)' },
   { value: '£', label: '£ (GBP)' },
   { value: '¥', label: '¥ (JPY/CNY)' },
