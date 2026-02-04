@@ -10,13 +10,28 @@ interface SettingsTabProps {
 }
 
 const CURRENCY_OPTIONS = [
-  { value: '$', label: '$ (USD)' },
   { value: 'A$', label: 'A$ (AUD)' },
+  { value: 'R$', label: 'R$ (BRL)' },
+  { value: 'C$', label: 'C$ (CAD)' },
+  { value: 'CHF', label: 'CHF (CHF)' },
+  { value: 'CN¥', label: 'CN¥ (CNY)' },
   { value: '€', label: '€ (EUR)' },
   { value: '£', label: '£ (GBP)' },
-  { value: '¥', label: '¥ (JPY/CNY)' },
+  { value: 'HK$', label: 'HK$ (HKD)' },
+  { value: 'Rp', label: 'Rp (IDR)' },
   { value: '₹', label: '₹ (INR)' },
+  { value: '¥', label: '¥ (JPY)' },
   { value: '₩', label: '₩ (KRW)' },
+  { value: 'MX$', label: 'MX$ (MXN)' },
+  { value: 'kr', label: 'kr (NOK)' },
+  { value: 'NZ$', label: 'NZ$ (NZD)' },
+  { value: 'zł', label: 'zł (PLN)' },
+  { value: 'kr', label: 'kr (SEK)' },
+  { value: 'S$', label: 'S$ (SGD)' },
+  { value: '฿', label: '฿ (THB)' },
+  { value: 'NT$', label: 'NT$ (TWD)' },
+  { value: '$', label: '$ (USD)' },
+  { value: 'R', label: 'R (ZAR)' },
 ]
 
 const FORMAT_OPTIONS = [
@@ -51,7 +66,7 @@ export function SettingsTab({ schema, onChange }: SettingsTabProps) {
                   </Select.InputButton>
                 }
               />
-              <Select.Positioner>
+              <Select.Positioner align="end" alignItemWithTrigger={false}>
                 <Select.Popup>
                   {CURRENCY_OPTIONS.map((option) => (
                     <Select.Item key={option.value} value={option.value}>
@@ -91,7 +106,7 @@ export function SettingsTab({ schema, onChange }: SettingsTabProps) {
                   </Select.InputButton>
                 }
               />
-              <Select.Positioner>
+              <Select.Positioner align="end" alignItemWithTrigger={false}>
                 <Select.Popup>
                   {FORMAT_OPTIONS.map((option) => (
                     <Select.Item key={option.value} value={option.value}>
@@ -128,7 +143,7 @@ export function SettingsTab({ schema, onChange }: SettingsTabProps) {
                   </Select.InputButton>
                 }
               />
-              <Select.Positioner>
+              <Select.Positioner align="end" alignItemWithTrigger={false}>
                 <Select.Popup>
                   {FONT_OPTIONS.map((option) => (
                     <Select.Item key={option.value} value={option.value}>
